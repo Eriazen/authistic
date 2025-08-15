@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Authistic:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Authistic_jar</output-path>
+    <root id="archive" name="Authistic.jar">
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/paper-plugin.yml" />
+      <element id="module-output" name="Authistic.main" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/players.yml" />
+    </root>
+  </artifact>
+</component>
