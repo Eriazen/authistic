@@ -62,8 +62,10 @@ Example storage:
     "registered": true
   }
 }
+```
 
 ## Directory structure
+```css
 src/
 └── main/
     └── java/
@@ -78,7 +80,7 @@ src/
                 └── PasswordUtil.java
 resources/
 └── plugin.yml
-
+```
 ## Useful tools
 | Tool             | Purpose               |
 | ---------------- | --------------------- |
