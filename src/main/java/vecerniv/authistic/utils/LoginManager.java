@@ -1,6 +1,5 @@
 package vecerniv.authistic.utils;
 
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;

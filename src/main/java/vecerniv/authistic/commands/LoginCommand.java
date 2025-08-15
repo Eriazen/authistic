@@ -34,9 +34,9 @@ public class LoginCommand implements BasicCommand {
         }
 
         String storedHash = plugin.getPlayerConfig().getString("players." + uuidString + ".password");
-        String inputHash = PasswordUtils.hashPassword(args[0], uuidString);
+        //String inputHash = PasswordUtils.hashPassword(args[0], uuidString);
 
-        if (!inputHash.equals(storedHash)) {
+        if (!PasswordUtils.checkPassword(args[0], uuidString, storedHash)) {
             player.sendRichMessage("<dark_red>[Authistic] Incorrect password!");
             return;
         }
