@@ -26,14 +26,15 @@ public class LoginCommand implements BasicCommand {
 
         UUID uuid = player.getUniqueId();
         String uuidString = uuid.toString();
+        String name =  player.getName();
 
-        if (!plugin.getPlayerConfig().contains("players." + uuidString)) {
+        if (!plugin.getPlayerConfig().contains("players." + name)) {
             player.sendRichMessage("<dark_red>[Authistic] You are not registered!");
             player.sendRichMessage("<dark_gray>Use /register <password> to register first.");
             return;
         }
 
-        String storedHash = plugin.getPlayerConfig().getString("players." + uuidString + ".password");
+        String storedHash = plugin.getPlayerConfig().getString("players." + name + ".password");
 
         assert storedHash != null;
         if (!PasswordUtils.checkPassword(args[0], uuidString, storedHash)) {

@@ -26,8 +26,9 @@ public class RegisterCommand implements BasicCommand {
 
         UUID uuid = player.getUniqueId();
         String uuidString = uuid.toString();
+        String name  = player.getName();
 
-        if (plugin.getPlayerConfig().contains("players." + uuidString)) {
+        if (plugin.getPlayerConfig().contains("players." + name)) {
             player.sendRichMessage("<dark_red>[Authistic] You are already registered!");
             player.sendRichMessage("<dark_red>[Authistic] Please login using:");
             player.sendRichMessage("<dark_gray>       /login <password>");
@@ -36,7 +37,7 @@ public class RegisterCommand implements BasicCommand {
 
         String hashedPassword = PasswordUtils.hashPassword(args[0], uuidString);
 
-        plugin.getPlayerConfig().set("players." + uuidString + ".password", hashedPassword);
+        plugin.getPlayerConfig().set("players." + name + ".password", hashedPassword);
         plugin.savePlayerConfig();
 
         player.sendRichMessage("<dark_green>[Authistic] You are now registered!");
