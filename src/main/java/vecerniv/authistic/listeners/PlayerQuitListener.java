@@ -20,6 +20,5 @@ public class PlayerQuitListener implements Listener {
     public void onPlayerQuit(@NotNull PlayerQuitEvent event) {
         Player player = event.getPlayer();
         plugin.getLoginManager().removeLoggedInPlayer(player);
-        plugin.getLogger().info(player.getName() + " removed from logged in list.");
     }
 }

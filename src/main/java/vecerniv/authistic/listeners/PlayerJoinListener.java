@@ -43,6 +43,6 @@ public class PlayerJoinListener implements Listener {
         event.getPlayer().sendRichMessage(String.join("\n", messages));
 
         // Log into console
-        plugin.getLogger().info("Join message was sent to " + player.getName());
+        plugin.getLogger().info("Join message sent to " + player.getName());
     }
 }

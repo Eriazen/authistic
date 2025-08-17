@@ -27,7 +27,7 @@ public class LoginManager {
         player.setGameMode(GameMode.ADVENTURE);
 
         penalizedPlayers.add(player.getUniqueId());
-        plugin.getLogger().info("Added player to penalized list.");
+        plugin.getLogger().info(player.getName() + " added to penalized list.");
     }
 
     public boolean isPenalized(@NotNull Player player) {
@@ -50,11 +50,11 @@ public class LoginManager {
 
         penalizedPlayers.remove(player.getUniqueId());
         loggedInPlayers.add(player.getUniqueId());
-        plugin.getLogger().info("Removed player from penalized list and added to logged in list.");
+        plugin.getLogger().info(player.getName() + " removed from penalized list and added to logged in list.");
     }
 
     public void removeLoggedInPlayer(@NotNull Player player) {
         loggedInPlayers.remove(player.getUniqueId());
-        plugin.getLogger().info("Removed player from logged in list.");
+        plugin.getLogger().info(player.getName() + " removed from logged in list.");
     }
 }
