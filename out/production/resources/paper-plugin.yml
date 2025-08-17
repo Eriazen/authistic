@@ -1,7 +1,0 @@
-name: Authistic
-version: '1.0-SNAPSHOT'
-main: vecerniv.authistic.Authistic
-api-version: '1.21'
-authors: [ vecerniv ]
-description: Simple authentication plugin for MC servers running paper on version 1.21.8
-website: https://github.com/Eriazen/authistic
