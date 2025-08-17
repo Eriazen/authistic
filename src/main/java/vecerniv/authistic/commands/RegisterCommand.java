@@ -4,6 +4,7 @@ import io.papermc.paper.command.brigadier.BasicCommand;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import vecerniv.authistic.Authistic;
 import vecerniv.authistic.utils.CheckSender;
 import vecerniv.authistic.utils.PasswordUtils;
@@ -42,5 +43,10 @@ public class RegisterCommand implements BasicCommand {
 
         player.sendRichMessage("<dark_green>[Authistic] You are now registered!");
         plugin.getLoginManager().removeLoginPenalty(player);
+    }
+
+    @Override
+    public @Nullable String permission() {
+        return "authistic.register";
     }
 }
