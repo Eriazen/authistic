@@ -35,6 +35,11 @@ public class LoginCommand implements BasicCommand {
             return;
         }
 
+        if (plugin.getLoginManager().isLoggedIn(player)) {
+            player.sendRichMessage("<dark_red>[Authistic] You are already logged in!");
+            return;
+        }
+
         String storedHash = plugin.getPlayerConfig().getString("players." + name + ".password");
 
         assert storedHash != null;
