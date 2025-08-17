@@ -1,11 +1,13 @@
 package vecerniv.authistic;
 
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import vecerniv.authistic.commands.LoginCommand;
 import vecerniv.authistic.commands.RegisterCommand;
+import vecerniv.authistic.commands.ResetpwdCommand;
 import vecerniv.authistic.listeners.LockdownListener;
 import vecerniv.authistic.listeners.PlayerJoinListener;
 import vecerniv.authistic.listeners.PlayerQuitListener;
@@ -15,11 +17,10 @@ import java.io.File;
 import java.io.IOException;
 
 
-
 public final class Authistic extends JavaPlugin {
     private File playerFile;
     private FileConfiguration playerConfig;
-    LoginManager loginManager = new LoginManager(this);
+    private final LoginManager loginManager = new LoginManager(this);
 
     @Override
     public void onEnable() {
@@ -30,6 +31,7 @@ public final class Authistic extends JavaPlugin {
 
         registerCommand("register", new RegisterCommand(this));
         registerCommand("login", new LoginCommand(this));
+        registerCommand("resetpwd", new ResetpwdCommand(this));
 
         createPlayerFile();
 
@@ -66,6 +68,10 @@ public final class Authistic extends JavaPlugin {
             saveResource("players.yml", false);
         }
         playerConfig = YamlConfiguration.loadConfiguration(playerFile);
+    }
+
+    public void deletePlayerConfig(OfflinePlayer player) {
+        playerConfig.set("players." + player.getName(), null);
     }
 
     public LoginManager getLoginManager() {
