@@ -21,7 +21,8 @@ public class LoginManager {
     }
 
     public void applyLoginPenalty(@NotNull Player player) {
-        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, 10, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE,
+                10, false, false));
         player.setWalkSpeed(0f);
         player.setInvulnerable(true);
         player.setGameMode(GameMode.ADVENTURE);
