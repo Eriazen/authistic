@@ -8,15 +8,17 @@ import org.jetbrains.annotations.NotNull;
 import vecerniv.authistic.Authistic;
 
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Set;
 import java.util.UUID;
 
 public class LoginManager {
     private final Set<UUID> penalizedPlayers = new HashSet<>();
     private final Set<UUID> loggedInPlayers = new HashSet<>();
+    private final Hashtable<UUID, Integer> loginAttempts = new Hashtable<>();
     private final Authistic plugin;
 
-    public  LoginManager(Authistic plugin) {
+    public LoginManager(Authistic plugin) {
         this.plugin = plugin;
     }
 
@@ -27,6 +29,9 @@ public class LoginManager {
         player.setGameMode(GameMode.ADVENTURE);
 
         penalizedPlayers.add(player.getUniqueId());
+        if (!loginAttempts.containsKey(player.getUniqueId())) {
+            loginAttempts.put(player.getUniqueId(), 0);
+        }
         plugin.getLogger().info(player.getName() + " added to penalized list.");
     }
 
@@ -56,5 +61,20 @@ public class LoginManager {
     public void removeLoggedInPlayer(@NotNull Player player) {
         loggedInPlayers.remove(player.getUniqueId());
         plugin.getLogger().info(player.getName() + " removed from logged in list.");
+    }
+
+    public void updateLoginAttempts(@NotNull Player player) {
+        loginAttempts.put(player.getUniqueId(), loginAttempts.get(player.getUniqueId())+1);
+        plugin.getLogger().info("Updated login attempts for player " + player.getName() +
+                " " + loginAttempts.get(player.getUniqueId()));
+    }
+
+    public int getLoginAttempts(@NotNull Player player) {
+        return  loginAttempts.get(player.getUniqueId());
+    }
+
+    public void resetLoginAttempts(@NotNull Player player) {
+        loginAttempts.put(player.getUniqueId(), 0);
+        plugin.getLogger().info("Reset login attempts for player " + player.getName());
     }
 }
