@@ -1,5 +1,5 @@
 name: Authistic
-version: '1.0.1'
+version: '1.0-SNAPSHOT'
 main: vecerniv.authistic.Authistic
 api-version: '1.21'
 authors: [ vecerniv ]
