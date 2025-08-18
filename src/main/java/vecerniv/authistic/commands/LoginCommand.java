@@ -9,6 +9,7 @@ import vecerniv.authistic.Authistic;
 import vecerniv.authistic.utils.CheckSender;
 import vecerniv.authistic.utils.PasswordUtils;
 
+import java.time.Duration;
 import java.util.UUID;
 
 public class LoginCommand implements BasicCommand {
@@ -27,7 +28,7 @@ public class LoginCommand implements BasicCommand {
 
         UUID uuid = player.getUniqueId();
         String uuidString = uuid.toString();
-        String name =  player.getName();
+        String name = player.getName();
 
         if (!plugin.getPlayerConfig().contains("players." + name)) {
             player.sendRichMessage("<dark_red>[Authistic] You are not registered!");
@@ -40,12 +41,23 @@ public class LoginCommand implements BasicCommand {
             return;
         }
 
-        String storedHash = plugin.getPlayerConfig().getString("players." + name + ".password");
+        int loginAttempts = 1;
+        while (loginAttempts < 4) {
+            plugin.getLogger().info("[Authistic] " + name + " attempting to login: " + loginAttempts);
 
-        assert storedHash != null;
-        if (!PasswordUtils.checkPassword(args[0], uuidString, storedHash)) {
+            String storedHash = plugin.getPlayerConfig().getString("players." + name + ".password");
+
+            assert storedHash != null;
+            if (PasswordUtils.checkPassword(args[0], uuidString, storedHash)) {
+                break;
+            }
             player.sendRichMessage("<dark_red>[Authistic] Incorrect password!");
-            return;
+            loginAttempts++;
+
+            if (loginAttempts == 4) {
+                player.ban("Too many incorrect login attempts!", Duration.ofMinutes(30),
+                        "Authistic", true);
+            }
         }
 
         player.sendRichMessage("<dark_green>[Authistic] Login successful!");
